@@ -1,0 +1,17 @@
+{
+  "markdown": "[コンテンツにスキップ](https://openai.github.io/openai-agents-python/ja/ref/tracing/util/#util)\n\n# `Util`\n\n### time\\_iso\n\n```md-code__content\ntime_iso() -> str\n\n```\n\nReturn the current time in ISO 8601 format.\n\nSource code in `src/agents/tracing/util.py`\n\n|     |     |\n| --- | --- |\n| ```<br>4<br>5<br>6<br>``` | ```md-code__content<br>def time_iso() -> str:<br>    \"\"\"Return the current time in ISO 8601 format.\"\"\"<br>    return get_trace_provider().time_iso()<br>``` |\n\n### gen\\_trace\\_id\n\n```md-code__content\ngen_trace_id() -> str\n\n```\n\nGenerate a new trace ID.\n\nSource code in `src/agents/tracing/util.py`\n\n|     |     |\n| --- | --- |\n| ```<br> 9<br>10<br>11<br>``` | ```md-code__content<br>def gen_trace_id() -> str:<br>    \"\"\"Generate a new trace ID.\"\"\"<br>    return get_trace_provider().gen_trace_id()<br>``` |\n\n### gen\\_span\\_id\n\n```md-code__content\ngen_span_id() -> str\n\n```\n\nGenerate a new span ID.\n\nSource code in `src/agents/tracing/util.py`\n\n|     |     |\n| --- | --- |\n| ```<br>14<br>15<br>16<br>``` | ```md-code__content<br>def gen_span_id() -> str:<br>    \"\"\"Generate a new span ID.\"\"\"<br>    return get_trace_provider().gen_span_id()<br>``` |\n\n### gen\\_group\\_id\n\n```md-code__content\ngen_group_id() -> str\n\n```\n\nGenerate a new group ID.\n\nSource code in `src/agents/tracing/util.py`\n\n|     |     |\n| --- | --- |\n| ```<br>19<br>20<br>21<br>``` | ```md-code__content<br>def gen_group_id() -> str:<br>    \"\"\"Generate a new group ID.\"\"\"<br>    return get_trace_provider().gen_group_id()<br>``` |",
+  "metadata": {
+    "generator": "mkdocs-1.6.1, mkdocs-material-9.6.11",
+    "favicon": "https://openai.github.io/openai-agents-python/images/favicon-platform.svg",
+    "language": "ja",
+    "viewport": "width=device-width,initial-scale=1",
+    "title": "Util - OpenAI Agents SDK",
+    "scrapeId": "e5f2c343-b3bf-4ffd-a673-3d951a82e631",
+    "sourceURL": "https://openai.github.io/openai-agents-python/ja/ref/tracing/util/",
+    "url": "https://openai.github.io/openai-agents-python/ja/ref/tracing/util/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic"
+  },
+  "warning": "This scrape job was throttled at your current concurrency limit. If you'd like to scrape faster, you can upgrade your plan."
+}

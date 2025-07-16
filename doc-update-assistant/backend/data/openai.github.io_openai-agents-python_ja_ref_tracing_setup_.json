@@ -1,0 +1,17 @@
+{
+  "markdown": "[コンテンツにスキップ](https://openai.github.io/openai-agents-python/ja/ref/tracing/setup/#setup)\n\n# `Setup`\n\n### set\\_trace\\_provider\n\n```md-code__content\nset_trace_provider(provider: TraceProvider) -> None\n\n```\n\nSet the global trace provider used by tracing utilities.\n\nSource code in `src/agents/tracing/setup.py`\n\n|     |     |\n| --- | --- |\n| ```<br>11<br>12<br>13<br>14<br>``` | ```md-code__content<br>def set_trace_provider(provider: TraceProvider) -> None:<br>    \"\"\"Set the global trace provider used by tracing utilities.\"\"\"<br>    global GLOBAL_TRACE_PROVIDER<br>    GLOBAL_TRACE_PROVIDER = provider<br>``` |\n\n### get\\_trace\\_provider\n\n```md-code__content\nget_trace_provider() -> TraceProvider\n\n```\n\nGet the global trace provider used by tracing utilities.\n\nSource code in `src/agents/tracing/setup.py`\n\n|     |     |\n| --- | --- |\n| ```<br>17<br>18<br>19<br>20<br>21<br>``` | ```md-code__content<br>def get_trace_provider() -> TraceProvider:<br>    \"\"\"Get the global trace provider used by tracing utilities.\"\"\"<br>    if GLOBAL_TRACE_PROVIDER is None:<br>        raise RuntimeError(\"Trace provider not set\")<br>    return GLOBAL_TRACE_PROVIDER<br>``` |",
+  "metadata": {
+    "favicon": "https://openai.github.io/openai-agents-python/images/favicon-platform.svg",
+    "generator": "mkdocs-1.6.1, mkdocs-material-9.6.11",
+    "language": "ja",
+    "viewport": "width=device-width,initial-scale=1",
+    "title": "Setup - OpenAI Agents SDK",
+    "scrapeId": "13fa8e2b-aa64-4e67-ba99-765a2d3155ba",
+    "sourceURL": "https://openai.github.io/openai-agents-python/ja/ref/tracing/setup/",
+    "url": "https://openai.github.io/openai-agents-python/ja/ref/tracing/setup/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic"
+  },
+  "warning": "This scrape job was throttled at your current concurrency limit. If you'd like to scrape faster, you can upgrade your plan."
+}

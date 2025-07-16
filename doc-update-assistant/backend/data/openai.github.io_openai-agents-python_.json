@@ -1,0 +1,16 @@
+{
+  "markdown": "[Skip to content](https://openai.github.io/openai-agents-python/#openai-agents-sdk)\n\n# OpenAI Agents SDK\n\nThe [OpenAI Agents SDK](https://github.com/openai/openai-agents-python) enables you to build agentic AI apps in a lightweight, easy-to-use package with very few abstractions. It's a production-ready upgrade of our previous experimentation for agents, [Swarm](https://github.com/openai/swarm/tree/main). The Agents SDK has a very small set of primitives:\n\n- **Agents**, which are LLMs equipped with instructions and tools\n- **Handoffs**, which allow agents to delegate to other agents for specific tasks\n- **Guardrails**, which enable the inputs to agents to be validated\n\nIn combination with Python, these primitives are powerful enough to express complex relationships between tools and agents, and allow you to build real-world applications without a steep learning curve. In addition, the SDK comes with built-in **tracing** that lets you visualize and debug your agentic flows, as well as evaluate them and even fine-tune models for your application.\n\n## Why use the Agents SDK\n\nThe SDK has two driving design principles:\n\n1. Enough features to be worth using, but few enough primitives to make it quick to learn.\n2. Works great out of the box, but you can customize exactly what happens.\n\nHere are the main features of the SDK:\n\n- Agent loop: Built-in agent loop that handles calling tools, sending results to the LLM, and looping until the LLM is done.\n- Python-first: Use built-in language features to orchestrate and chain agents, rather than needing to learn new abstractions.\n- Handoffs: A powerful feature to coordinate and delegate between multiple agents.\n- Guardrails: Run input validations and checks in parallel to your agents, breaking early if the checks fail.\n- Function tools: Turn any Python function into a tool, with automatic schema generation and Pydantic-powered validation.\n- Tracing: Built-in tracing that lets you visualize, debug and monitor your workflows, as well as use the OpenAI suite of evaluation, fine-tuning and distillation tools.\n\n## Installation\n\n```md-code__content\npip install openai-agents\n\n```\n\n## Hello world example\n\n```md-code__content\nfrom agents import Agent, Runner\n\nagent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\")\n\nresult = Runner.run_sync(agent, \"Write a haiku about recursion in programming.\")\nprint(result.final_output)\n\n# Code within the code,\n# Functions calling themselves,\n# Infinite loop's dance.\n\n```\n\n( _If running this, ensure you set the `OPENAI_API_KEY` environment variable_)\n\n```md-code__content\nexport OPENAI_API_KEY=sk-...\n\n```",
+  "metadata": {
+    "viewport": "width=device-width,initial-scale=1",
+    "title": "OpenAI Agents SDK",
+    "generator": "mkdocs-1.6.1, mkdocs-material-9.6.11",
+    "language": "en",
+    "favicon": "https://openai.github.io/openai-agents-python/images/favicon-platform.svg",
+    "scrapeId": "ce7c5dfc-0772-4da0-9596-63cd11c22657",
+    "sourceURL": "https://openai.github.io/openai-agents-python/",
+    "url": "https://openai.github.io/openai-agents-python/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic"
+  }
+}

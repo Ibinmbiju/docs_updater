@@ -1,0 +1,16 @@
+{
+  "markdown": "[コンテンツにスキップ](https://openai.github.io/openai-agents-python/ja/models/litellm/#litellm)\n\n# LiteLLM 経由でのモデル利用\n\nNote\n\nLiteLLM との統合は現在ベータ版です。特に小規模なモデルプロバイダーでは問題が発生する可能性があります。問題を見つけた場合は、 [GitHub Issues](https://github.com/openai/openai-agents-python/issues) からご報告ください。迅速に対応いたします。\n\n[LiteLLM](https://docs.litellm.ai/docs/) は、1 つのインターフェースで 100 以上のモデルを利用できるライブラリです。Agents SDK では LiteLLM との統合により、任意の AI モデルを使用できます。\n\n## セットアップ\n\n`litellm` がインストールされていることを確認してください。オプションの `litellm` 依存関係グループをインストールすることで対応できます。\n\n```md-code__content\npip install \"openai-agents[litellm]\"\n\n```\n\nインストール後、任意のエージェントで [`LitellmModel`](https://openai.github.io/openai-agents-python/ref/extensions/litellm/#agents.extensions.models.litellm_model.LitellmModel \"LitellmModel\") を利用できます。\n\n## 例\n\n以下は動作する完全なサンプルです。実行するとモデル名と API キーの入力を求められます。例えば次のように入力できます。\n\n- `openai/gpt-4.1` をモデル名に、OpenAI API キーを入力\n- `anthropic/claude-3-5-sonnet-20240620` をモデル名に、Anthropic API キーを入力\n- その他\n\nLiteLLM でサポートされているモデルの全リストは、 [litellm providers docs](https://docs.litellm.ai/docs/providers) を参照してください。\n\n```md-code__content\nfrom __future__ import annotations\n\nimport asyncio\n\nfrom agents import Agent, Runner, function_tool, set_tracing_disabled\nfrom agents.extensions.models.litellm_model import LitellmModel\n\n@function_tool\ndef get_weather(city: str):\n    print(f\"[debug] getting weather for {city}\")\n    return f\"The weather in {city} is sunny.\"\n\nasync def main(model: str, api_key: str):\n    agent = Agent(\n        name=\"Assistant\",\n        instructions=\"You only respond in haikus.\",\n        model=LitellmModel(model=model, api_key=api_key),\n        tools=[get_weather],\n    )\n\n    result = await Runner.run(agent, \"What's the weather in Tokyo?\")\n    print(result.final_output)\n\nif __name__ == \"__main__\":\n    # First try to get model/api key from args\n    import argparse\n\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--model\", type=str, required=False)\n    parser.add_argument(\"--api-key\", type=str, required=False)\n    args = parser.parse_args()\n\n    model = args.model\n    if not model:\n        model = input(\"Enter a model name for Litellm: \")\n\n    api_key = args.api_key\n    if not api_key:\n        api_key = input(\"Enter an API key for Litellm: \")\n\n    asyncio.run(main(model, api_key))\n\n```",
+  "metadata": {
+    "favicon": "https://openai.github.io/openai-agents-python/images/favicon-platform.svg",
+    "viewport": "width=device-width,initial-scale=1",
+    "generator": "mkdocs-1.6.1, mkdocs-material-9.6.11",
+    "title": "LiteLLM 経由でのモデル利用 - OpenAI Agents SDK",
+    "language": "ja",
+    "scrapeId": "7bcf0d32-0485-4381-a02b-d5a7e95f188c",
+    "sourceURL": "https://openai.github.io/openai-agents-python/ja/models/litellm/",
+    "url": "https://openai.github.io/openai-agents-python/ja/models/litellm/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic"
+  }
+}

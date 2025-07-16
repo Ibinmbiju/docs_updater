@@ -1,0 +1,17 @@
+{
+  "markdown": "[コンテンツにスキップ](https://openai.github.io/openai-agents-python/ja/ref/tracing/scope/#scope)\n\n# `Scope`\n\n### Scope\n\nManages the current span and trace in the context.\n\nSource code in `src/agents/tracing/scope.py`\n\n|     |     |\n| --- | --- |\n| ```<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>``` | ```md-code__content<br>class Scope:<br>    \"\"\"<br>    Manages the current span and trace in the context.<br>    \"\"\"<br>    @classmethod<br>    def get_current_span(cls) -> \"Span[Any] | None\":<br>        return _current_span.get()<br>    @classmethod<br>    def set_current_span(cls, span: \"Span[Any] | None\") -> \"contextvars.Token[Span[Any] | None]\":<br>        return _current_span.set(span)<br>    @classmethod<br>    def reset_current_span(cls, token: \"contextvars.Token[Span[Any] | None]\") -> None:<br>        _current_span.reset(token)<br>    @classmethod<br>    def get_current_trace(cls) -> \"Trace | None\":<br>        return _current_trace.get()<br>    @classmethod<br>    def set_current_trace(cls, trace: \"Trace | None\") -> \"contextvars.Token[Trace | None]\":<br>        logger.debug(f\"Setting current trace: {trace.trace_id if trace else None}\")<br>        return _current_trace.set(trace)<br>    @classmethod<br>    def reset_current_trace(cls, token: \"contextvars.Token[Trace | None]\") -> None:<br>        logger.debug(\"Resetting current trace\")<br>        _current_trace.reset(token)<br>``` |",
+  "metadata": {
+    "language": "ja",
+    "title": "Scope - OpenAI Agents SDK",
+    "generator": "mkdocs-1.6.1, mkdocs-material-9.6.11",
+    "viewport": "width=device-width,initial-scale=1",
+    "favicon": "https://openai.github.io/openai-agents-python/images/favicon-platform.svg",
+    "scrapeId": "fac957ab-3802-4e7f-9c82-4ddde15167de",
+    "sourceURL": "https://openai.github.io/openai-agents-python/ja/ref/tracing/scope/",
+    "url": "https://openai.github.io/openai-agents-python/ja/ref/tracing/scope/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic"
+  },
+  "warning": "This scrape job was throttled at your current concurrency limit. If you'd like to scrape faster, you can upgrade your plan."
+}

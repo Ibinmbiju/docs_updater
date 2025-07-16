@@ -1,0 +1,16 @@
+{
+  "markdown": "[Skip to content](https://openai.github.io/openai-agents-python/visualization/#agent-visualization)\n\n# Agent Visualization\n\nAgent visualization allows you to generate a structured graphical representation of agents and their relationships using **Graphviz**. This is useful for understanding how agents, tools, and handoffs interact within an application.\n\n## Installation\n\nInstall the optional `viz` dependency group:\n\n```md-code__content\npip install \"openai-agents[viz]\"\n\n```\n\n## Generating a Graph\n\nYou can generate an agent visualization using the `draw_graph` function. This function creates a directed graph where:\n\n- **Agents** are represented as yellow boxes.\n- **Tools** are represented as green ellipses.\n- **Handoffs** are directed edges from one agent to another.\n\n### Example Usage\n\n```md-code__content\nfrom agents import Agent, function_tool\nfrom agents.extensions.visualization import draw_graph\n\n@function_tool\ndef get_weather(city: str) -> str:\n    return f\"The weather in {city} is sunny.\"\n\nspanish_agent = Agent(\n    name=\"Spanish agent\",\n    instructions=\"You only speak Spanish.\",\n)\n\nenglish_agent = Agent(\n    name=\"English agent\",\n    instructions=\"You only speak English\",\n)\n\ntriage_agent = Agent(\n    name=\"Triage agent\",\n    instructions=\"Handoff to the appropriate agent based on the language of the request.\",\n    handoffs=[spanish_agent, english_agent],\n    tools=[get_weather],\n)\n\ndraw_graph(triage_agent)\n\n```\n\n![Agent Graph](https://openai.github.io/openai-agents-python/assets/images/graph.png)\n\nThis generates a graph that visually represents the structure of the **triage agent** and its connections to sub-agents and tools.\n\n## Understanding the Visualization\n\nThe generated graph includes:\n\n- A **start node** ( `__start__`) indicating the entry point.\n- Agents represented as **rectangles** with yellow fill.\n- Tools represented as **ellipses** with green fill.\n- Directed edges indicating interactions:\n- **Solid arrows** for agent-to-agent handoffs.\n- **Dotted arrows** for tool invocations.\n- An **end node** ( `__end__`) indicating where execution terminates.\n\n## Customizing the Graph\n\n### Showing the Graph\n\nBy default, `draw_graph` displays the graph inline. To show the graph in a separate window, write the following:\n\n```md-code__content\ndraw_graph(triage_agent).view()\n\n```\n\n### Saving the Graph\n\nBy default, `draw_graph` displays the graph inline. To save it as a file, specify a filename:\n\n```md-code__content\ndraw_graph(triage_agent, filename=\"agent_graph\")\n\n```\n\nThis will generate `agent_graph.png` in the working directory.",
+  "metadata": {
+    "generator": "mkdocs-1.6.1, mkdocs-material-9.6.11",
+    "language": "en",
+    "favicon": "https://openai.github.io/openai-agents-python/images/favicon-platform.svg",
+    "viewport": "width=device-width,initial-scale=1",
+    "title": "Agent Visualization - OpenAI Agents SDK",
+    "scrapeId": "c755e4c4-7452-478c-8255-70388858216a",
+    "sourceURL": "https://openai.github.io/openai-agents-python/visualization/",
+    "url": "https://openai.github.io/openai-agents-python/visualization/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic"
+  }
+}

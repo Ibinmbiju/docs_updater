@@ -1,0 +1,16 @@
+{
+  "markdown": "[Skip to content](https://openai.github.io/openai-agents-python/examples/#examples)\n\n# Examples\n\nCheck out a variety of sample implementations of the SDK in the examples section of the [repo](https://github.com/openai/openai-agents-python/tree/main/examples). The examples are organized into several categories that demonstrate different patterns and capabilities.\n\n## Categories\n\n- **[agent\\_patterns](https://github.com/openai/openai-agents-python/tree/main/examples/agent_patterns):**\nExamples in this category illustrate common agent design patterns, such as\n  - Deterministic workflows\n  - Agents as tools\n  - Parallel agent execution\n- **[basic](https://github.com/openai/openai-agents-python/tree/main/examples/basic):**\nThese examples showcase foundational capabilities of the SDK, such as\n  - Dynamic system prompts\n  - Streaming outputs\n  - Lifecycle events\n- **[tool examples](https://github.com/openai/openai-agents-python/tree/main/examples/tools):**\nLearn how to implement OAI hosted tools such as web search and file search,\nand integrate them into your agents.\n\n- **[model providers](https://github.com/openai/openai-agents-python/tree/main/examples/model_providers):**\nExplore how to use non-OpenAI models with the SDK.\n\n- **[handoffs](https://github.com/openai/openai-agents-python/tree/main/examples/handoffs):**\nSee practical examples of agent handoffs.\n\n- **[mcp](https://github.com/openai/openai-agents-python/tree/main/examples/mcp):**\nLearn how to build agents with MCP.\n\n- **[customer\\_service](https://github.com/openai/openai-agents-python/tree/main/examples/customer_service)** and **[research\\_bot](https://github.com/openai/openai-agents-python/tree/main/examples/research_bot):**\nTwo more built-out examples that illustrate real-world applications\n  - **customer\\_service**: Example customer service system for an airline.\n  - **research\\_bot**: Simple deep research clone.\n- **[voice](https://github.com/openai/openai-agents-python/tree/main/examples/voice):**\nSee examples of voice agents, using our TTS and STT models.",
+  "metadata": {
+    "title": "Examples - OpenAI Agents SDK",
+    "favicon": "https://openai.github.io/openai-agents-python/images/favicon-platform.svg",
+    "viewport": "width=device-width,initial-scale=1",
+    "language": "en",
+    "generator": "mkdocs-1.6.1, mkdocs-material-9.6.11",
+    "scrapeId": "3b40fce5-0004-4b4b-88f4-c9c4bc0671e4",
+    "sourceURL": "https://openai.github.io/openai-agents-python/examples/",
+    "url": "https://openai.github.io/openai-agents-python/examples/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic"
+  }
+}

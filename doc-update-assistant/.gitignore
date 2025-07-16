@@ -125,7 +125,7 @@ config/secrets.json
 *.pem
 
 # Application specific
-/backend/data/
+
 /backend/documents/
 /frontend/.next/
 /frontend/out/

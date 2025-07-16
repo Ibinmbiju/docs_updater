@@ -1,0 +1,17 @@
+{
+  "markdown": "[コンテンツにスキップ](https://openai.github.io/openai-agents-python/ja/ref/extensions/handoff_prompt/#handoff-prompt)\n\n# `Handoff prompt`\n\n### RECOMMENDED\\_PROMPT\\_PREFIX`module-attribute`\n\n```md-code__content\nRECOMMENDED_PROMPT_PREFIX = \"# System context\\nYou are part of a multi-agent system called the Agents SDK, designed to make agent coordination and execution easy. Agents uses two primary abstraction: **Agents** and **Handoffs**. An agent encompasses instructions and tools and can hand off a conversation to another agent when appropriate. Handoffs are achieved by calling a handoff function, generally named `transfer_to_<agent_name>`. Transfers between agents are handled seamlessly in the background; do not mention or draw attention to these transfers in your conversation with the user.\\n\"\n\n```\n\n### prompt\\_with\\_handoff\\_instructions\n\n```md-code__content\nprompt_with_handoff_instructions(prompt: str) -> str\n\n```\n\nAdd recommended instructions to the prompt for agents that use handoffs.\n\nSource code in `src/agents/extensions/handoff_prompt.py`\n\n|     |     |\n| --- | --- |\n| ```<br>15<br>16<br>17<br>18<br>19<br>``` | ```md-code__content<br>def prompt_with_handoff_instructions(prompt: str) -> str:<br>    \"\"\"<br>    Add recommended instructions to the prompt for agents that use handoffs.<br>    \"\"\"<br>    return f\"{RECOMMENDED_PROMPT_PREFIX}\\n\\n{prompt}\"<br>``` |",
+  "metadata": {
+    "language": "ja",
+    "title": "Handoff prompt - OpenAI Agents SDK",
+    "favicon": "https://openai.github.io/openai-agents-python/images/favicon-platform.svg",
+    "viewport": "width=device-width,initial-scale=1",
+    "generator": "mkdocs-1.6.1, mkdocs-material-9.6.11",
+    "scrapeId": "ade48e17-8e29-4f34-9f34-14e609650435",
+    "sourceURL": "https://openai.github.io/openai-agents-python/ja/ref/extensions/handoff_prompt/",
+    "url": "https://openai.github.io/openai-agents-python/ja/ref/extensions/handoff_prompt/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic"
+  },
+  "warning": "This scrape job was throttled at your current concurrency limit. If you'd like to scrape faster, you can upgrade your plan."
+}

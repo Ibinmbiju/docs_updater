@@ -1,0 +1,16 @@
+{
+  "markdown": "[Skip to content](https://openai.github.io/openai-agents-python/release/#release-process)\n\n# Release process\n\nThe project follows a slightly modified version of semantic versioning using the form `0.Y.Z`. The leading `0` indicates the SDK is still evolving rapidly. Increment the components as follows:\n\n## Minor ( `Y`) versions\n\nWe will increase minor versions `Y` for **breaking changes** to any public interfaces that are not marked as beta. For example, going from `0.0.x` to `0.1.x` might include breaking changes.\n\nIf you don't want breaking changes, we recommend pinning to `0.0.x` versions in your project.\n\n## Patch ( `Z`) versions\n\nWe will increment `Z` for non-breaking changes:\n\n- Bug fixes\n- New features\n- Changes to private interfaces\n- Updates to beta features",
+  "metadata": {
+    "viewport": "width=device-width,initial-scale=1",
+    "favicon": "https://openai.github.io/openai-agents-python/images/favicon-platform.svg",
+    "generator": "mkdocs-1.6.1, mkdocs-material-9.6.11",
+    "title": "Release process - OpenAI Agents SDK",
+    "language": "en",
+    "scrapeId": "8ed249a8-c407-4c27-aa2b-f9ab413fa534",
+    "sourceURL": "https://openai.github.io/openai-agents-python/release/",
+    "url": "https://openai.github.io/openai-agents-python/release/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic"
+  }
+}

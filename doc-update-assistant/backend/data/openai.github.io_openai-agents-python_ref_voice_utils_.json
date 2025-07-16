@@ -1,0 +1,16 @@
+{
+  "markdown": "[Skip to content](https://openai.github.io/openai-agents-python/ref/voice/utils/#utils)\n\n# `Utils`\n\n### get\\_sentence\\_based\\_splitter\n\n```md-code__content\nget_sentence_based_splitter(\n    min_sentence_length: int = 20,\n) -> Callable[[str], tuple[str, str]]\n\n```\n\nReturns a function that splits text into chunks based on sentence boundaries.\n\nParameters:\n\n| Name | Type | Description | Default |\n| --- | --- | --- | --- |\n| `min_sentence_length` | `int` | The minimum length of a sentence to be included in a chunk. | `20` |\n\nReturns:\n\n| Type | Description |\n| --- | --- |\n| `Callable[[str], tuple[str, str]]` | A function that splits text into chunks based on sentence boundaries. |\n\nSource code in `src/agents/voice/utils.py`\n\n|     |     |\n| --- | --- |\n| ```<br> 5<br> 6<br> 7<br> 8<br> 9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>``` | ```md-code__content<br>def get_sentence_based_splitter(<br>    min_sentence_length: int = 20,<br>) -> Callable[[str], tuple[str, str]]:<br>    \"\"\"Returns a function that splits text into chunks based on sentence boundaries.<br>    Args:<br>        min_sentence_length: The minimum length of a sentence to be included in a chunk.<br>    Returns:<br>        A function that splits text into chunks based on sentence boundaries.<br>    \"\"\"<br>    def sentence_based_text_splitter(text_buffer: str) -> tuple[str, str]:<br>        \"\"\"<br>        A function to split the text into chunks. This is useful if you want to split the text into<br>        chunks before sending it to the TTS model rather than waiting for the whole text to be<br>        processed.<br>        Args:<br>            text_buffer: The text to split.<br>        Returns:<br>            A tuple of the text to process and the remaining text buffer.<br>        \"\"\"<br>        sentences = re.split(r\"(?<=[.!?])\\s+\", text_buffer.strip())<br>        if len(sentences) >= 1:<br>            combined_sentences = \" \".join(sentences[:-1])<br>            if len(combined_sentences) >= min_sentence_length:<br>                remaining_text_buffer = sentences[-1]<br>                return combined_sentences, remaining_text_buffer<br>        return \"\", text_buffer<br>    return sentence_based_text_splitter<br>``` |",
+  "metadata": {
+    "favicon": "https://openai.github.io/openai-agents-python/images/favicon-platform.svg",
+    "title": "Utils - OpenAI Agents SDK",
+    "language": "en",
+    "viewport": "width=device-width,initial-scale=1",
+    "generator": "mkdocs-1.6.1, mkdocs-material-9.6.11",
+    "scrapeId": "5dc29d5b-9730-45f9-a148-3fe380c60777",
+    "sourceURL": "https://openai.github.io/openai-agents-python/ref/voice/utils/",
+    "url": "https://openai.github.io/openai-agents-python/ref/voice/utils/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic"
+  }
+}

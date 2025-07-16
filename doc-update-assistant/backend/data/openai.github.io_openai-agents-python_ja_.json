@@ -1,0 +1,16 @@
+{
+  "markdown": "[コンテンツにスキップ](https://openai.github.io/openai-agents-python/ja/#openai-agents-sdk)\n\n# OpenAI Agents SDK\n\n[OpenAI Agents SDK](https://github.com/openai/openai-agents-python) は、抽象化をほとんど排した軽量で使いやすいパッケージにより、エージェントベースの AI アプリを構築できるようにします。これは、以前のエージェント向け実験プロジェクトである [Swarm](https://github.com/openai/swarm/tree/main) をプロダクションレベルへとアップグレードしたものです。Agents SDK にはごく少数の基本コンポーネントがあります。\n\n- **エージェント**: instructions と tools を備えた LLM\n- **ハンドオフ**: エージェントが特定タスクを他のエージェントへ委任するしくみ\n- **ガードレール**: エージェントへの入力を検証する機能\n\nPython と組み合わせることで、これらのコンポーネントはツールとエージェント間の複雑な関係を表現でき、学習コストを抑えつつ実際のアプリケーションを構築できます。さらに SDK には、エージェントフローを可視化・デバッグできる **トレーシング** が標準搭載されており、評価やファインチューニングにも活用可能です。\n\n## Agents SDK を使用する理由\n\nSDK には 2 つの設計原則があります。\n\n1. 使う価値のある十分な機能を備えつつ、学習が早いようコンポーネント数を絞る。\n2. すぐに使い始められる初期設定で動作しつつ、挙動を細かくカスタマイズできる。\n\n主な機能は次のとおりです。\n\n- エージェントループ: ツール呼び出し、結果を LLM に送信、LLM が完了するまでのループを自動で処理。\n- Python ファースト: 新しい抽象化を学ばずに、言語標準機能でエージェントをオーケストレーション。\n- ハンドオフ: 複数エージェント間の協調と委譲を実現する強力な機能。\n- ガードレール: エージェントと並列で入力バリデーションを実行し、失敗時に早期終了。\n- 関数ツール: 任意の Python 関数をツール化し、自動スキーマ生成と Pydantic での検証を提供。\n- トレーシング: フローの可視化・デバッグ・モニタリングに加え、OpenAI の評価・ファインチューニング・蒸留ツールを利用可能。\n\n## インストール\n\n```md-code__content\npip install openai-agents\n\n```\n\n## Hello World の例\n\n```md-code__content\nfrom agents import Agent, Runner\n\nagent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\")\n\nresult = Runner.run_sync(agent, \"Write a haiku about recursion in programming.\")\nprint(result.final_output)\n\n# Code within the code,\n# Functions calling themselves,\n# Infinite loop's dance.\n\n```\n\n( _これを実行する場合は、 `OPENAI_API_KEY` 環境変数を設定してください_)\n\n```md-code__content\nexport OPENAI_API_KEY=sk-...\n\n```",
+  "metadata": {
+    "viewport": "width=device-width,initial-scale=1",
+    "generator": "mkdocs-1.6.1, mkdocs-material-9.6.11",
+    "title": "はじめに - OpenAI Agents SDK",
+    "favicon": "https://openai.github.io/openai-agents-python/images/favicon-platform.svg",
+    "language": "ja",
+    "scrapeId": "c825bc98-5fb7-497a-8727-7829e515f164",
+    "sourceURL": "https://openai.github.io/openai-agents-python/ja/",
+    "url": "https://openai.github.io/openai-agents-python/ja/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic"
+  }
+}

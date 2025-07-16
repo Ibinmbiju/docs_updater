@@ -1,0 +1,16 @@
+{
+  "markdown": "[コンテンツにスキップ](https://openai.github.io/openai-agents-python/ja/examples/#_1)\n\n# コード例\n\nリポジトリの [examples セクション](https://github.com/openai/openai-agents-python/tree/main/examples) には、 SDK のさまざまなサンプル実装が用意されています。これらの例は、異なるパターンや機能を示す複数のカテゴリーに整理されています。\n\n## カテゴリー\n\n- **[agent\\_patterns](https://github.com/openai/openai-agents-python/tree/main/examples/agent_patterns):**\n\n\nこのカテゴリーの例では、一般的なエージェント設計パターンを紹介しています。\n  - 決定論的ワークフロー\n  - ツールとしてのエージェント\n  - エージェントの並列実行\n- **[basic](https://github.com/openai/openai-agents-python/tree/main/examples/basic):**\n\n\nSDK の基礎的な機能を示す例です。\n  - 動的なシステムプロンプト\n  - ストリーミング出力\n  - ライフサイクルイベント\n- **[tool examples](https://github.com/openai/openai-agents-python/tree/main/examples/tools):**\n\n\nWeb 検索やファイル検索など、 OpenAI がホストするツールの実装方法と、それらをエージェントに統合する方法を学べます。\n\n- **[model providers](https://github.com/openai/openai-agents-python/tree/main/examples/model_providers):**\n\n\nOpenAI 以外のモデルを SDK で利用する方法を探ります。\n\n- **[handoffs](https://github.com/openai/openai-agents-python/tree/main/examples/handoffs):**\n\n\nエージェントのハンドオフを実践的に示す例です。\n\n- **[mcp](https://github.com/openai/openai-agents-python/tree/main/examples/mcp):**\n\n\nMCP を使ったエージェントの構築方法を学べます。\n\n- **[customer\\_service](https://github.com/openai/openai-agents-python/tree/main/examples/customer_service)** と **[research\\_bot](https://github.com/openai/openai-agents-python/tree/main/examples/research_bot):**\n\n\nより実践的なユースケースを示す、拡張された 2 つの例です。\n  - **customer\\_service**: 航空会社向けカスタマーサービスシステムの例\n  - **research\\_bot**: シンプルなディープリサーチクローン\n- **[voice](https://github.com/openai/openai-agents-python/tree/main/examples/voice):**\n\n\nTTS と STT モデルを用いた音声エージェントの例をご覧ください。",
+  "metadata": {
+    "generator": "mkdocs-1.6.1, mkdocs-material-9.6.11",
+    "language": "ja",
+    "favicon": "https://openai.github.io/openai-agents-python/images/favicon-platform.svg",
+    "title": "コード例 - OpenAI Agents SDK",
+    "viewport": "width=device-width,initial-scale=1",
+    "scrapeId": "2d2190e4-1244-44e0-ac40-da48ed23ce9c",
+    "sourceURL": "https://openai.github.io/openai-agents-python/ja/examples/",
+    "url": "https://openai.github.io/openai-agents-python/ja/examples/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic"
+  }
+}

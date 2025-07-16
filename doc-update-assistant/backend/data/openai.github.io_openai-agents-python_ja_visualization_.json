@@ -1,0 +1,16 @@
+{
+  "markdown": "[コンテンツにスキップ](https://openai.github.io/openai-agents-python/ja/visualization/#_1)\n\n# エージェントの可視化\n\nエージェントの可視化を使用すると、 \\\\*\\\\* Graphviz \\*\\* を用いてエージェントとその関係を構造化されたグラフィカル表現として生成できます。これは、アプリケーション内でエージェント、ツール、handoffs がどのように相互作用するかを理解するのに役立ちます。\n\n## インストール\n\nオプションの `viz` 依存関係グループをインストールします:\n\n```md-code__content\npip install \"openai-agents[viz]\"\n\n```\n\n## グラフの生成\n\n`draw_graph` 関数を使用してエージェントの可視化を生成できます。この関数は有向グラフを作成し、以下のように表現します。\n\n- **エージェント** は黄色のボックスで表されます。\n- **ツール** は緑色の楕円で表されます。\n- **handoffs** はエージェント間の有向エッジで示されます。\n\n### 使用例\n\n```md-code__content\nfrom agents import Agent, function_tool\nfrom agents.extensions.visualization import draw_graph\n\n@function_tool\ndef get_weather(city: str) -> str:\n    return f\"The weather in {city} is sunny.\"\n\nspanish_agent = Agent(\n    name=\"Spanish agent\",\n    instructions=\"You only speak Spanish.\",\n)\n\nenglish_agent = Agent(\n    name=\"English agent\",\n    instructions=\"You only speak English\",\n)\n\ntriage_agent = Agent(\n    name=\"Triage agent\",\n    instructions=\"Handoff to the appropriate agent based on the language of the request.\",\n    handoffs=[spanish_agent, english_agent],\n    tools=[get_weather],\n)\n\ndraw_graph(triage_agent)\n\n```\n\n![Agent Graph](https://openai.github.io/openai-agents-python/assets/images/graph.png)\n\nこれにより、 **triage agent** の構造と、それがサブエージェントやツールとどのようにつながっているかを視覚的に表すグラフが生成されます。\n\n## 可視化の理解\n\n生成されたグラフには次の要素が含まれます。\n\n- エントリーポイントを示す **start node** ( `__start__`)\n- 黄色の塗りつぶしを持つ **矩形** のエージェント\n- 緑色の塗りつぶしを持つ **楕円** のツール\n- 相互作用を示す有向エッジ\n- エージェント間の handoffs には **実線の矢印**\n- ツール呼び出しには **破線の矢印**\n- 実行が終了する位置を示す **end node** ( `__end__`)\n\n## グラフのカスタマイズ\n\n### グラフの表示\n\nデフォルトでは、 `draw_graph` はグラフをインラインで表示します。別ウィンドウでグラフを表示するには、次のように記述します。\n\n```md-code__content\ndraw_graph(triage_agent).view()\n\n```\n\n### グラフの保存\n\nデフォルトでは、 `draw_graph` はグラフをインラインで表示します。ファイルとして保存するには、ファイル名を指定します:\n\n```md-code__content\ndraw_graph(triage_agent, filename=\"agent_graph\")\n\n```\n\nこれにより、作業ディレクトリに `agent_graph.png` が生成されます。",
+  "metadata": {
+    "favicon": "https://openai.github.io/openai-agents-python/images/favicon-platform.svg",
+    "viewport": "width=device-width,initial-scale=1",
+    "generator": "mkdocs-1.6.1, mkdocs-material-9.6.11",
+    "title": "エージェントの可視化 - OpenAI Agents SDK",
+    "language": "ja",
+    "scrapeId": "5e4ed019-8b98-4ce8-91d6-9b00df3bdf39",
+    "sourceURL": "https://openai.github.io/openai-agents-python/ja/visualization/",
+    "url": "https://openai.github.io/openai-agents-python/ja/visualization/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic"
+  }
+}

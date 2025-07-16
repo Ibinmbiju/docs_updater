@@ -1,0 +1,16 @@
+{
+  "markdown": "[コンテンツにスキップ](https://openai.github.io/openai-agents-python/ja/repl/#repl)\n\n# REPL ユーティリティ\n\n`run_demo_loop` を使うと、ターミナルから手軽にエージェントを試せます。\n\n```md-code__content\nimport asyncio\nfrom agents import Agent, run_demo_loop\n\nasync def main() -> None:\n    agent = Agent(name=\"Assistant\", instructions=\"あなたは親切なアシスタントです\")\n    await run_demo_loop(agent)\n\nif __name__ == \"__main__\":\n    asyncio.run(main())\n\n```\n\n`run_demo_loop` は入力を繰り返し受け取り、会話履歴を保持したままエージェントを実行します。既定ではストリーミング出力を表示します。\n`quit` または `exit` と入力するか `Ctrl-D` を押すと終了します。",
+  "metadata": {
+    "favicon": "https://openai.github.io/openai-agents-python/images/favicon-platform.svg",
+    "language": "ja",
+    "viewport": "width=device-width,initial-scale=1",
+    "generator": "mkdocs-1.6.1, mkdocs-material-9.6.11",
+    "title": "REPL ユーティリティ - OpenAI Agents SDK",
+    "scrapeId": "dedebc97-ab45-4355-ba26-46c2f604db5b",
+    "sourceURL": "https://openai.github.io/openai-agents-python/ja/repl/",
+    "url": "https://openai.github.io/openai-agents-python/ja/repl/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic"
+  }
+}

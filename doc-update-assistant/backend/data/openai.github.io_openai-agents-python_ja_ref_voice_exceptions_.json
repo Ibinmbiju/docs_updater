@@ -1,0 +1,17 @@
+{
+  "markdown": "[コンテンツにスキップ](https://openai.github.io/openai-agents-python/ja/ref/voice/exceptions/#exceptions)\n\n# `Exceptions`\n\n### STTWebsocketConnectionError\n\nBases: `AgentsException`\n\nException raised when the STT websocket connection fails.\n\nSource code in `src/agents/voice/exceptions.py`\n\n|     |     |\n| --- | --- |\n| ```<br>4<br>5<br>6<br>7<br>8<br>``` | ```md-code__content<br>class STTWebsocketConnectionError(AgentsException):<br>    \"\"\"Exception raised when the STT websocket connection fails.\"\"\"<br>    def __init__(self, message: str):<br>        self.message = message<br>``` |",
+  "metadata": {
+    "favicon": "https://openai.github.io/openai-agents-python/images/favicon-platform.svg",
+    "viewport": "width=device-width,initial-scale=1",
+    "generator": "mkdocs-1.6.1, mkdocs-material-9.6.11",
+    "language": "ja",
+    "title": "Exceptions - OpenAI Agents SDK",
+    "scrapeId": "9ef62c3f-553f-423b-be3a-603d066554c2",
+    "sourceURL": "https://openai.github.io/openai-agents-python/ja/ref/voice/exceptions/",
+    "url": "https://openai.github.io/openai-agents-python/ja/ref/voice/exceptions/",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic"
+  },
+  "warning": "This scrape job was throttled at your current concurrency limit. If you'd like to scrape faster, you can upgrade your plan."
+}
