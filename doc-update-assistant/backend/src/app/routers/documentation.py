@@ -10,6 +10,7 @@ from ..models.document import Document, DocumentSection, DocumentType
 from ..schemas.document import DocumentResponse, DocumentSectionResponse, SearchRequest, SearchResponse
 from ..services.document_processor import DocumentProcessor
 from ..utils.exceptions import DocumentProcessingError
+from ..utils.logger import api_logger
 
 router = APIRouter(prefix="/docs", tags=["documentation"])
 
@@ -65,20 +66,17 @@ async def list_documents(request: Request) -> List[DocumentResponse]:
     """List all loaded documents."""
     try:
         doc_processor = request.app.state.doc_processor
-        print(f"API DEBUG: /docs/documents called")
-        print(f"API DEBUG: doc_processor type: {type(doc_processor)}")
-        print(f"API DEBUG: documents count: {len(doc_processor.documents) if hasattr(doc_processor, 'documents') else 'No documents attribute'}")
+        api_logger.debug("GET /docs/documents called")
         
         if hasattr(doc_processor, 'documents'):
-            print(f"API DEBUG: documents keys: {list(doc_processor.documents.keys())[:5]}...")  # Show first 5 keys
             documents = [DocumentResponse.from_document(doc) for doc in doc_processor.documents.values() if doc is not None]
-            print(f"API DEBUG: Returning {len(documents)} documents")
+            api_logger.info(f"Returning {len(documents)} documents")
             return documents
         else:
-            print("API DEBUG: doc_processor has no documents attribute")
+            api_logger.warning("Document processor has no documents attribute")
             return []
     except Exception as e:
-        print(f"API DEBUG: Exception in list_documents: {e}")
+        api_logger.error(f"Exception in list_documents: {e}")
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 

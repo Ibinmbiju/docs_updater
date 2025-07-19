@@ -29,13 +29,29 @@ class DocumentProcessor:
         self.documents: Dict[str, Document] = {}
         self.sections: Dict[str, DocumentSection] = {}
         self.embeddings: Dict[str, np.ndarray] = {}  # section_id -> embedding vector
-        self.embeddings_model = OpenAI(api_key=settings.openai_api_key or os.getenv("OPENAI_API_KEY"), timeout=30)
+        
+        # Initialize OpenAI client only if API key is available
+        api_key = settings.openai_api_key or os.getenv("OPENAI_API_KEY")
+        if api_key:
+            try:
+                self.embeddings_model = OpenAI(api_key=api_key, timeout=30)
+                print("[DEBUG] OpenAI client initialized successfully")
+            except Exception as e:
+                print(f"[DEBUG] Failed to initialize OpenAI client: {e}")
+                self.embeddings_model = None
+        else:
+            print("[DEBUG] No OpenAI API key found, embeddings will be disabled")
+            self.embeddings_model = None
         
         # Fast embedding search optimizations
         self.embedding_matrix: Optional[np.ndarray] = None
         self.section_ids_list: List[str] = []
         self.query_embedding_cache: Dict[str, np.ndarray] = {}  # Cache for query embeddings
         self._embedding_matrix_dirty = True
+        
+        # Load existing embeddings on initialization
+        print("[DocumentProcessor] Loading existing embeddings from pickle file...")
+        self.load_embeddings()
         
     def save_embeddings(self, path: str = "data/embeddings.pkl") -> None:
         """Persist embeddings to disk as a pickle file."""
@@ -67,10 +83,6 @@ class DocumentProcessor:
         document = await self._process_json_document(file_path, markdown_content, metadata)
         if document:
             self._store_document(document)
-            # After storing, try to load embeddings and generate for new sections
-            self.load_embeddings()
-            await self.generate_section_embeddings()
-            self.save_embeddings()
         else:
             print(f"[DocumentProcessor] Failed to process document: {file_path}")
         return document
@@ -100,17 +112,32 @@ class DocumentProcessor:
         if not docs_path_path.exists():
             print(f"[DocumentProcessor] Directory not found: {docs_path_path}")
             raise DocumentProcessingError(f"Directory not found: {docs_path_path}")
+        
+        
         documents = []
         for file_path in docs_path_path.rglob("*.json"):
             document = await self._load_single_document(file_path)
             if document:
                 documents.append(document)
+        
         if not documents:
             print(f"[DocumentProcessor] No valid documents loaded from directory: {docs_path_path}")
-        if documents:
-            self.load_embeddings()
-            await self.generate_section_embeddings()
-            self.save_embeddings()
+        else:
+            print(f"[DocumentProcessor] Loaded {len(documents)} documents")
+            
+            # Only generate embeddings for sections that don't have them
+            sections_needing_embeddings = [
+                section for section in self.sections.values()
+                if section.id not in self.embeddings and section.content and section.content.strip()
+            ]
+            
+            if sections_needing_embeddings:
+                print(f"[DocumentProcessor] Need to generate embeddings for {len(sections_needing_embeddings)} new sections")
+                await self.generate_section_embeddings()
+                self.save_embeddings()
+            else:
+                print("[DocumentProcessor] All sections already have embeddings, skipping generation")
+        
         return documents
 
     async def _load_single_document(self, file_path: Path) -> Document | None:
@@ -260,6 +287,11 @@ class DocumentProcessor:
     
     async def generate_section_embeddings(self, batch_size: int = 50) -> None:
         """Generate and store embeddings for all document sections using optimized batching."""
+        # Skip embedding generation if no OpenAI client is available
+        if not self.embeddings_model:
+            print("[DEBUG] No OpenAI client available, skipping embedding generation")
+            return
+        
         # Only embed non-empty, valid string contents
         to_embed = [
             (section.id, str(section.content)[:2000])  # Truncate content for faster embedding
@@ -268,6 +300,7 @@ class DocumentProcessor:
         ]
         
         if not to_embed:
+            print("[DEBUG] No sections to embed")
             return
         
         print(f"[DEBUG] Generating embeddings for {len(to_embed)} sections")
@@ -288,13 +321,19 @@ class DocumentProcessor:
                 
             except Exception as e:
                 print(f"[Embedding] Error embedding batch {i}-{i+batch_size}: {e}")
-                raise  # Terminate the program on first API failure
+                # Don't raise on embedding errors, just skip embeddings
+                print("[DEBUG] Skipping embedding generation due to API error")
+                return
         
         # Mark matrix as dirty after adding new embeddings
         self._embedding_matrix_dirty = True
 
     async def _embed_text(self, text: str) -> np.ndarray | None:
         """Get embedding for a text using OpenAI API with optimization."""
+        if not self.embeddings_model:
+            print("[DEBUG] No OpenAI client available for text embedding")
+            return None
+            
         try:
             # Truncate text for faster embedding
             truncated_text = text[:1000] if len(text) > 1000 else text

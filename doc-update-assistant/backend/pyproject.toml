@@ -2,8 +2,8 @@
 name = "docs-update-assistant"
 version = "0.1.0"
 description = "AI-powered documentation update assistant"
-authors = ["Your Name <your.email@example.com>"]
-readme = "README.md"
+authors = ["Documentation Update Assistant Team"]
+readme = "../README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -34,8 +34,6 @@ passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 python-dotenv = "^1.0.0"
 numpy = "^1.25.0"
 
-# Redis for fast embedding storage
-redis = "^5.0.0"
 
 [tool.poetry.group.dev.dependencies]
 # Testing

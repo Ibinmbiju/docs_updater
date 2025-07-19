@@ -124,11 +124,23 @@ config/secrets.json
 *.key
 *.pem
 
-# Application specific
-
+# Application specific - DO NOT COMMIT THESE!
+/backend/data/
 /backend/documents/
+/backend/src/app/data/
 /frontend/.next/
 /frontend/out/
+
+# Sensitive application data
+embeddings.pkl
+*.pkl
+*.json.backup
+documents/
+uploads/
+
+# Configuration files that might contain secrets
+settings.local.json
+config.local.json
 
 # Docker
 .dockerignore

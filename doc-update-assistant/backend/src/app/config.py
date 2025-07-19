@@ -15,9 +15,13 @@ class Settings(BaseSettings):
     app_version: str = "0.1.0"
     debug: bool = False
     
+    # Logging Settings
+    log_level: str = "INFO"
+    environment: str = "development"
+    
     # OpenAI Settings
     openai_api_key: Optional[str] = None
-    openai_model: str = "gpt-4"
+    openai_model: str = "gpt-3.5-turbo"
     
     # Storage Settings
     storage_path: str = "data"
@@ -32,9 +36,6 @@ class Settings(BaseSettings):
     # Pagination
     default_page_size: int = 20
     max_page_size: int = 100
-    
-    # Redis Settings
-    redis_url: str = "redis://localhost:6379/0"
     
     # Database Settings (for future use)
     database_url: Optional[str] = None

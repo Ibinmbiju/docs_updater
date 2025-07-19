@@ -17,9 +17,6 @@ import {
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || '/api';
 
-console.log('API DEBUG: API_BASE_URL =', API_BASE_URL);
-console.log('API DEBUG: Environment:', process.env.NODE_ENV);
-
 // Create axios instance with default config
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -29,16 +26,18 @@ const apiClient = axios.create({
   },
 });
 
-// Request interceptor for debugging
+// Request interceptor for error handling
 apiClient.interceptors.request.use(
   (config) => {
-    const fullUrl = `${config.baseURL || ''}${config.url || ''}`;
-    console.log('API DEBUG: Making request to:', fullUrl);
-    console.log('API DEBUG: Request config:', config);
+    // Only log in development mode
+    if (process.env.NODE_ENV === 'development') {
+      const fullUrl = `${config.baseURL || ''}${config.url || ''}`;
+      console.log('API: Making request to:', fullUrl);
+    }
     return config;
   },
   (error) => {
-    console.error('API DEBUG: Request error:', error);
+    console.error('API Request Error:', error.message);
     return Promise.reject(error);
   }
 );

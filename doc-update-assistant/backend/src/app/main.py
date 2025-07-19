@@ -15,11 +15,7 @@ try:
     from .routers import documentation, suggestions
     from .utils.exceptions import DocumentUpdateException
     from .services.document_processor import DocumentProcessor
-    from .services.redis_document_processor import RedisDocumentProcessor
     from .services.ai_service import AIService
-    
-    # Try Redis with detailed logging to debug connection issues
-    REDIS_AVAILABLE = True
         
 except ImportError as e:
     print(f"Import error: {e}")
@@ -32,7 +28,6 @@ except ImportError as e:
         openai_api_key = None
     
     settings = Settings()
-    REDIS_AVAILABLE = False
     
     # Import AIService in fallback too
     try:
@@ -55,41 +50,14 @@ app = FastAPI(
     default_response_class=ORJSONResponse
 )
 
-# Attach global service instances to app.state
-# Use Redis-based processor for improved performance if available
-if REDIS_AVAILABLE:
-    try:
-        print("Attempting to connect to Redis...")
-        print(f"Redis URL from environment: {os.getenv('REDIS_URL', 'Not set')}")
-        print(f"Redis URL from config: {settings.redis_url}")
-        
-        app.state.doc_processor = RedisDocumentProcessor()
-        print("SUCCESS: Redis-based document processor initialized")
-        
-        # Test Redis connection
-        print("Testing Redis connection...")
-        # The RedisDocumentProcessor should test the connection in its __init__
-        print("SUCCESS: Using Redis-based document processor with persistent embeddings")
-    except Exception as e:
-        print(f"ERROR: Redis connection failed with detailed error:")
-        print(f"  Exception type: {type(e).__name__}")
-        print(f"  Exception message: {str(e)}")
-        print(f"  Full traceback:")
-        traceback.print_exc()
-        
-        print("FALLBACK: Using file-based processor instead")
-        if DocumentProcessor:
-            app.state.doc_processor = DocumentProcessor()
-        else:
-            app.state.doc_processor = None
-            print("ERROR: DocumentProcessor also unavailable")
+# Initialize document processor (file-based with pickle embeddings)
+print("INFO: Using file-based document processor with pickle embeddings")
+if DocumentProcessor:
+    app.state.doc_processor = DocumentProcessor()
+    print("SUCCESS: Document processor initialized")
 else:
-    print("INFO: Redis disabled, using file-based processor")
-    if DocumentProcessor:
-        app.state.doc_processor = DocumentProcessor()
-    else:
-        app.state.doc_processor = None
-        print("ERROR: DocumentProcessor unavailable")
+    app.state.doc_processor = None
+    print("ERROR: DocumentProcessor unavailable")
 
 if AIService:
     app.state.ai_service = AIService()
@@ -161,11 +129,11 @@ async def startup_event():
     """Fast startup - launch document loading in background with Redis."""
     # Check for OpenAI API key
     if not os.getenv("OPENAI_API_KEY"):
-        print("[WARNING] OPENAI_API_KEY environment variable is not set. Suggestions will not work.")
+        print("WARNING: OpenAI API key not configured. AI suggestions will be disabled.")
     
     # Start document loading in background (non-blocking with timeout)
     asyncio.create_task(load_documents_background())
-    print("Application started - documents loading in background with Redis...")
+    print("Application started - documents loading in background with pickle embeddings...")
 
 
 # Health check endpoint

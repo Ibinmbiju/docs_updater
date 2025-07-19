@@ -32,18 +32,24 @@ function Dashboard() {
   const [generateQuery, setGenerateQuery] = useState('');
 
   // Fetch documents
-  const { data: documents = [], isLoading: documentsLoading } = useQuery({
+  const { data: documents = [], isLoading: documentsLoading, error: documentsError } = useQuery({
     queryKey: ['documents'],
-    queryFn: () => apiService.getDocuments(),
+    queryFn: async () => {
+      try {
+        const result = await apiService.getDocuments();
+        return result;
+      } catch (error) {
+        console.error('Error fetching documents:', error);
+        throw error;
+      }
+    },
   });
 
   // Fetch suggestions
   const { data: suggestions = [], isLoading: suggestionsLoading } = useQuery({
     queryKey: ['suggestions'],
     queryFn: async () => {
-      console.log('[DEBUG] Fetching suggestions...');
       const result = await apiService.getSuggestions({ limit: 5 });
-      console.log('[DEBUG] Fetched suggestions:', result);
       return result;
     },
   });
@@ -51,18 +57,15 @@ function Dashboard() {
   // Generate suggestions mutation
   const generateSuggestionsMutation = useMutation({
     mutationFn: async (query: string) => {
-      console.log('[DEBUG] Generating suggestions for query:', query);
       const result = await apiService.generateSuggestions({ query, limit: 5 });
-      console.log('[DEBUG] Generated suggestions response:', result);
       return result;
     },
     onSuccess: (data) => {
-      console.log('[DEBUG] Suggestions generated successfully:', data);
       queryClient.invalidateQueries({ queryKey: ['suggestions'] });
       setGenerateQuery('');
     },
     onError: (error) => {
-      console.error('[DEBUG] Error generating suggestions:', error);
+      console.error('Error generating suggestions:', error);
     }
   });
 
@@ -143,6 +146,14 @@ function Dashboard() {
                 {documentsLoading ? (
                   <div className="flex items-center justify-center h-full">
                     <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full"></div>
+                  </div>
+                ) : documentsError ? (
+                  <div className="text-center text-destructive h-full flex items-center justify-center">
+                    <div>
+                      <FileText className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                      <p>Error loading documents</p>
+                      <p className="text-xs mt-1">{getErrorMessage(documentsError)}</p>
+                    </div>
                   </div>
                 ) : documents.length === 0 ? (
                   <div className="text-center text-muted-foreground h-full flex items-center justify-center">
