@@ -142,6 +142,10 @@ uploads/
 settings.local.json
 config.local.json
 
+# Claude AI assistant files (local development only)
+.claude/
+*.claude.md
+
 # Docker
 .dockerignore
 

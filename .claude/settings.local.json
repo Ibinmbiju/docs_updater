@@ -34,7 +34,8 @@
       "Bash(npm run lint)",
       "Bash(docker-compose:*)",
       "Bash(npm run lint:*)",
-      "Bash(poetry run:*)"
+      "Bash(poetry run:*)",
+      "Bash(cp:*)"
     ],
     "deny": []
   }
